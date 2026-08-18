@@ -1,114 +1,67 @@
 # Event Management System – Navigation Flow
 
-## 1. Administrator Navigation
+## Main Navigation Flow
 
-```text
-Login
-  ↓
-Dashboard
-  ├── User Management
-  │     ├── View Users
-  │     ├── Add User
-  │     └── Edit/Delete User
-  │
-  ├── Event Management
-  │     ├── View Events
-  │     ├── Add Event
-  │     ├── Edit Event
-  │     └── Delete Event
-  │
-  ├── Registration Management
-  │     ├── View Registrations
-  │     └── Manage Participants
-  │
-  ├── Schedule Management
-  │     ├── View Schedule
-  │     ├── Add Schedule
-  │     └── Edit Schedule
-  │
-  ├── Reports
-  │
-  └── Profile
-        ↓
-      Logout
-      Login
-  ↓
-Dashboard
-  ├── My Events
-  │     ├── View Events
-  │     ├── Create Event
-  │     ├── Edit Event
-  │     └── Delete Event
-  │
-  ├── Registrations
-  │     └── View Participants
-  │
-  ├── Schedule
-  │     ├── View Schedule
-  │     └── Manage Schedule
-  │
-  └── Profile
-        ↓
-      Logout
-      Login
-Login
-  ↓
-Dashboard
-  ├── Browse Events
-  │     ↓
-  │   Event Details
-  │     ↓
-  │   Register for Event
-  │
-  ├── My Registrations
-  │
-  ├── Event Schedule
-  │
-  └── Profile
-        ↓
-      Logout
-      Login
-  ↓
-Dashboard
-  ├── Browse Events
-  │     ↓
-  │   Event Details
-  │     ↓
-  │   Register for Event
-  │
-  ├── My Registrations
-  │
-  ├── Event Schedule
-  │
-  └── Profile
-        ↓
-      Logout
-      Login
-  ↓
-Dashboard
-  ↓
-Select Module
-  ↓
-Perform Operation
-  ↓
-Save Data
-  ↓
-Database Updated
-  ↓
-Display Success Message
-Login
-  ↓
-Dashboard
-  ↓
-Events → Event Details → Registration
-  ↓
-Schedules
-  ↓
-Registrations
-  ↓
-Reports
-  ↓
-Profile
-  ↓
-Logout
- 
+```mermaid
+flowchart TD
+
+    A[Login] --> B{Select User Role}
+
+    B -->|Administrator| C[Admin Dashboard]
+    B -->|Organizer| D[Organizer Dashboard]
+    B -->|Participant| E[Participant Dashboard]
+
+    %% Administrator
+    C --> C1[User Management]
+    C --> C2[Event Management]
+    C --> C3[Registration Management]
+    C --> C4[Schedule Management]
+    C --> C5[Reports]
+    C --> C6[Profile]
+
+    C1 --> C1A[View Users]
+    C1 --> C1B[Add / Edit User]
+    C1 --> C1C[Delete User]
+
+    C2 --> C2A[View Events]
+    C2 --> C2B[Create Event]
+    C2 --> C2C[Edit Event]
+    C2 --> C2D[Delete Event]
+
+    C3 --> C3A[View Registrations]
+    C3 --> C3B[Manage Participants]
+
+    C4 --> C4A[View Schedule]
+    C4 --> C4B[Add / Edit Schedule]
+
+    C5 --> C5A[View Reports]
+
+    %% Organizer
+    D --> D1[My Events]
+    D --> D2[Registrations]
+    D --> D3[Schedule]
+    D --> D4[Profile]
+
+    D1 --> D1A[View Events]
+    D1 --> D1B[Create Event]
+    D1 --> D1C[Edit Event]
+    D1 --> D1D[Delete Event]
+
+    D2 --> D2A[View Participants]
+
+    D3 --> D3A[View Schedule]
+    D3 --> D3B[Manage Schedule]
+
+    %% Participant
+    E --> E1[Browse Events]
+    E --> E2[My Registrations]
+    E --> E3[Event Schedule]
+    E --> E4[Profile]
+
+    E1 --> E1A[View Event Details]
+    E1A --> E1B[Register for Event]
+
+    %% Logout
+    C6 --> F[Logout]
+    D4 --> F
+    E4 --> F
